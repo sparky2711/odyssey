@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odyssey</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body class="d-flex flex-column vh-100">
+    <%- include('../partials/navbar') %>
+
+    <!-- Banner with background image and text overlay -->
+    <div class="banner">
+        <div class="banner-text">
+            <h2>Welcome Aboard</h2>
+            <p>Get Ready to Sail through New Experiences</p>
+        </div>
+    </div>
+
+    <main class="container mt-5">
+        <%- include('../partials/flash') %>
+        <style>
+            body {
+                background-color: rgb(196, 196, 196); /* Change this color code to the off-white color you prefer */
+            }
+        </style>
+        <h1>All Destinations</h1>
+        <!-- <div>
+              <a href="/campgrounds/new">Add Campgrounds</a>
+          </div> -->
+        <ul>
+            <% for(let campground of campgrounds) {%>
+                <div class="card mb-3" >
+                    <div class="row">
+                        <div class="col-md-4">
+                                <img crossorigin="anonymous" class="img-fluid" alt="" src="<%= campground.images[0].url %>">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= campground.title %></h5>
+                                <p class="card-text"><%= campground.description %></p>
+                                <p class="card-text">
+                                    <small class="text-muted"><%= campground.location %></small>
+                                </p>
+                                <a class="btn btn-primary" href="/campgrounds/<%= campground._id %>">View <%= campground.title %></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </ul>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+    <%- include('../partials/footer') %>
+    <script src="/javascripts/validateForms.js"></script>
+
+    <style>
+        /* Style for the banner class */
+        .banner {
+            position: relative;
+            background-image: url('https://img.republicworld.com/republic-prod/stories/promolarge/xhdpi/bq05upqrajnx6i0l_1576354903.jpeg'); /* Replace with your banner image URL */
+            background-size: cover;
+            background-position: center;
+            color: #fff; /* Text color for the banner text */
+            text-align: center;
+            padding: 200px 0; /* Adjust the top and bottom padding to increase the height */
+        }
+
+        /* Style for the banner image overlay */
+        .banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for the desired blur effect */
+            backdrop-filter: blur(5px); /* Adjust the blur radius as needed */
+        }
+
+        /* Style for the banner text */
+        .banner-text {
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional text shadow */
+        }
+
+        /* Media query for responsive banner */
+        @media (max-width: 767px) {
+            .banner {
+                padding: 100px 0; /* Reduce padding for smaller screens */
+            }
+        }
+    </style>
+</body>
+</html>
